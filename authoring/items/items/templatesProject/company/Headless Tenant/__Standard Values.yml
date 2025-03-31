@@ -1,0 +1,31 @@
+﻿---
+ID: "ead4551b-742b-4434-a39d-1c7dce9959c1"
+Parent: "bb4bee9e-7b40-411d-93a3-0d4b14080054"
+Template: "bb4bee9e-7b40-411d-93a3-0d4b14080054"
+Path: /sitecore/templates/Project/company/Headless Tenant/__Standard Values
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20250331T073020Z
+    - ID: "52807595-0f8f-4b20-8d2a-cb71d28c6103"
+      Hint: __Owner
+      Value: |
+        sitecore\vasu_goyal@epam.com
+    - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
+      Hint: __Created by
+      Value: |
+        sitecore\vasu_goyal@epam.com
+    - ID: "8cdc337e-a112-42fb-bbb4-4143751e123f"
+      Hint: __Revision
+      Value: "49721651-e86a-467f-b007-b248a9f78915"
+    - ID: "badd9cf9-53e0-4d0c-bcc0-2d784c282f6a"
+      Hint: __Updated by
+      Value: |
+        sitecore\vasu_goyal@epam.com
+    - ID: "d9cf14b1-fa16-4ba6-9288-e8a174d4d522"
+      Hint: __Updated
+      Value: 20250331T073020Z
