@@ -1,0 +1,39 @@
+﻿---
+ID: "8ae02a4b-1a82-45ae-b2c4-11cc86ffd1fa"
+Parent: "6c256063-a45d-4337-8f17-47240ca2b7b0"
+Template: "76da0a8d-fc7e-42b2-af1e-205b49e43f98"
+Path: "/sitecore/content/company/company-dev/Presentation/Available Renderings/BookingServices"
+BranchID: "f2c865d5-9cae-4762-b09d-77e8c46c4e46"
+SharedFields:
+- ID: "715ae6c0-71c8-4744-ab4f-65362d20ad65"
+  Hint: Renderings
+  Value: "{AB57900E-3989-4AB2-8AF8-3CCB2D0A6DAB}"
+- ID: "f6d8a61c-2f84-4401-bd24-52d2068172bc"
+  Hint: __Originator
+  Value: "{75D7E200-E421-4626-9754-585583A1CD4A}"
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20250402T095529Z
+    - ID: "52807595-0f8f-4b20-8d2a-cb71d28c6103"
+      Hint: __Owner
+      Value: |
+        sitecore\vasu_goyal@epam.com
+    - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
+      Hint: __Created by
+      Value: |
+        sitecore\vasu_goyal@epam.com
+    - ID: "8cdc337e-a112-42fb-bbb4-4143751e123f"
+      Hint: __Revision
+      Value: "9cbb6c90-9651-4d6f-a0ef-7d2a068bb9b1"
+    - ID: "badd9cf9-53e0-4d0c-bcc0-2d784c282f6a"
+      Hint: __Updated by
+      Value: |
+        sitecore\vasu_goyal@epam.com
+    - ID: "d9cf14b1-fa16-4ba6-9288-e8a174d4d522"
+      Hint: __Updated
+      Value: 20250402T095529Z

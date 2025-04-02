@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "@sitecore-jss/sitecore-jss-cli": "^22.5.4"
+  }
+}

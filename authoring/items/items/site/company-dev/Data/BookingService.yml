@@ -1,0 +1,31 @@
+﻿---
+ID: "f57d3adf-e594-43e2-8d81-797fcadfff1f"
+Parent: "c0b722e5-34bd-430f-87df-49d747fdaaaa"
+Template: "4d0a7c52-4e3a-4867-928c-e19abc88ef14"
+Path: "/sitecore/content/company/company-dev/Data/BookingService"
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20250402T095530Z
+    - ID: "52807595-0f8f-4b20-8d2a-cb71d28c6103"
+      Hint: __Owner
+      Value: |
+        sitecore\vasu_goyal@epam.com
+    - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
+      Hint: __Created by
+      Value: |
+        sitecore\vasu_goyal@epam.com
+    - ID: "8cdc337e-a112-42fb-bbb4-4143751e123f"
+      Hint: __Revision
+      Value: "3757c75c-69f8-4a2d-9258-da556a2b8feb"
+    - ID: "badd9cf9-53e0-4d0c-bcc0-2d784c282f6a"
+      Hint: __Updated by
+      Value: |
+        sitecore\vasu_goyal@epam.com
+    - ID: "d9cf14b1-fa16-4ba6-9288-e8a174d4d522"
+      Hint: __Updated
+      Value: 20250402T095530Z

@@ -24,6 +24,8 @@ SharedFields:
     {D7EEAF4D-2B58-4029-B141-844221565EF0}
     {1F35559F-2140-4774-8BC1-525BB722BAA2}
     {ED6C4A9B-E3DC-413A-BEF6-337ABB7FD2C7}
+    {050A15BD-04E5-43F2-AC99-F0A4DF725793}
+    {4778FA91-9FB6-4B98-A87D-A899F2471684}
 - ID: "2b2fe9fd-78a6-40eb-b9f9-28409d8d3700"
   Hint: SitemapMediaItems
   Value: "{95EAC30B-A0FD-4B4F-BE06-F23485F92E89}"
@@ -57,11 +59,11 @@ Languages:
         sitecore\vasu_goyal@epam.com
     - ID: "8cdc337e-a112-42fb-bbb4-4143751e123f"
       Hint: __Revision
-      Value: "8cb6195f-2905-488b-aa2d-744b8536a661"
+      Value: "6978cfa2-53b1-4279-aac6-0ece36f712d9"
     - ID: "badd9cf9-53e0-4d0c-bcc0-2d784c282f6a"
       Hint: __Updated by
       Value: |
-        sitecore\Anonymous
+        sitecore\vasu_goyal@epam.com
     - ID: "d9cf14b1-fa16-4ba6-9288-e8a174d4d522"
       Hint: __Updated
-      Value: 20250331T073140Z
+      Value: 20250402T095531Z

@@ -1,0 +1,27 @@
+﻿---
+ID: "25761d39-41f7-4b2b-8152-211cc0e046ec"
+Parent: "1ba76567-9db8-4d59-987e-1792204c6c94"
+Template: "1ba76567-9db8-4d59-987e-1792204c6c94"
+Path: /sitecore/templates/Project/company/BookingForm/Rendering Parameters/Booking Form Parameters/__Standard Values
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20230126T111005Z
+    - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
+      Hint: __Created by
+      Value: |
+        sitecore\Admin
+    - ID: "8cdc337e-a112-42fb-bbb4-4143751e123f"
+      Hint: __Revision
+      Value: "b65a9ddc-090a-4d7d-858b-efa8ea7a56f0"
+    - ID: "badd9cf9-53e0-4d0c-bcc0-2d784c282f6a"
+      Hint: __Updated by
+      Value: |
+        sitecore\vasu_goyal@epam.com
+    - ID: "d9cf14b1-fa16-4ba6-9288-e8a174d4d522"
+      Hint: __Updated
+      Value: 20250401T052133Z

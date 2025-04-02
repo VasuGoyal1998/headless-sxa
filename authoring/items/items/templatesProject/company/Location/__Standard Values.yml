@@ -1,0 +1,34 @@
+﻿---
+ID: "c063dc7b-b330-41e1-aa25-b891648c48c5"
+Parent: "277e013c-2322-409f-a908-c1eb37727045"
+Template: "277e013c-2322-409f-a908-c1eb37727045"
+Path: /sitecore/templates/Project/company/Location/__Standard Values
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20250401T051538Z
+    - ID: "52807595-0f8f-4b20-8d2a-cb71d28c6103"
+      Hint: __Owner
+      Value: |
+        sitecore\vasu_goyal@epam.com
+    - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
+      Hint: __Created by
+      Value: |
+        sitecore\vasu_goyal@epam.com
+    - ID: "6b9e82b6-d8fb-499c-ac03-d6ada41d9b05"
+      Hint: Country
+      Value: $name
+    - ID: "8cdc337e-a112-42fb-bbb4-4143751e123f"
+      Hint: __Revision
+      Value: "6ed50a15-f2cc-4efd-8b98-2e5665b93d4d"
+    - ID: "badd9cf9-53e0-4d0c-bcc0-2d784c282f6a"
+      Hint: __Updated by
+      Value: |
+        sitecore\vasu_goyal@epam.com
+    - ID: "d9cf14b1-fa16-4ba6-9288-e8a174d4d522"
+      Hint: __Updated
+      Value: 20250401T051545Z
