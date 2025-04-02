@@ -1,5 +1,5 @@
-@import "@sass/abstracts/vars";
-@import "@sass/abstracts/mixins";
+@import '@sass/abstracts/vars';
+@import '@sass/abstracts/mixins';
 /**PROMO**/
 
 .promo {
@@ -13,7 +13,7 @@
       margin-bottom: 0;
     }
 
-    >.component-content {
+    > .component-content {
       border: 0;
       max-width: 583px;
       margin-right: 50px;
@@ -26,7 +26,7 @@
         max-width: 100%;
         margin-right: 0;
       }
-      
+
       .promo-text {
         .field-promotext {
           font-size: 14px;
@@ -48,7 +48,7 @@
         > div {
           padding: 0;
         }
-  
+
         .promo-text {
           padding: 15px 30px 5px 30px;
         }

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { ComponentParams, ComponentRendering } from '@sitecore-jss/sitecore-jss-nextjs';
 
 interface BookingServiceProps {
@@ -54,9 +54,15 @@ interface FormData {
 type AccordionSection = 'personalInfo' | 'vehicleInfo' | 'bookingDetails' | 'termsConditions';
 
 const Default = (props: BookingServiceProps): JSX.Element => {
-  const id = props.params.RenderingIdentifier;
   const heading = (props.rendering.fields?.Heading as Field<string>)?.value || 'Booking Appointment';
-  const countries = Array.isArray(props.rendering.fields?.Country) ? props.rendering.fields.Country as Item[] : [];
+  
+  // Use memo to optimize the countries array
+  const countries = useMemo(() => 
+    Array.isArray(props.rendering.fields?.Country) 
+      ? (props.rendering.fields.Country as Item[]) 
+      : [], 
+    [props.rendering.fields?.Country]
+  );
 
   // State for form data
   const [formData, setFormData] = useState<FormData>({
@@ -100,9 +106,9 @@ const Default = (props: BookingServiceProps): JSX.Element => {
   const [filteredCities, setFilteredCities] = useState<string[]>([]);
   useEffect(() => {
     const selectedCountry = formData.personalInfo.country;
-    const countryItem = countries.find(country => country.fields?.Country?.value === selectedCountry);
+    const countryItem = countries.find((country) => country.fields?.Country?.value === selectedCountry);
     if (countryItem && countryItem.fields?.City) {
-      setFilteredCities(countryItem.fields.City.map(cityObj => cityObj.fields.City.value));
+      setFilteredCities(countryItem.fields.City.map((cityObj) => cityObj.fields.City.value));
     } else {
       setFilteredCities([]);
     }
@@ -110,7 +116,7 @@ const Default = (props: BookingServiceProps): JSX.Element => {
 
   // Handle form input changes
   const handleChange = (section: keyof FormData, field: string, value: string | boolean) => {
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
       [section]: {
         ...prev[section],
@@ -121,9 +127,9 @@ const Default = (props: BookingServiceProps): JSX.Element => {
 
   // Handle individual checkbox change
   const handleCheckboxChange = (checkboxName: string, value: boolean) => {
-    setFormData(prev => {
+    setFormData((prev) => {
       const newContactMethods = { ...prev.termsConditions.contactMethods, [checkboxName]: value };
-      const allChecked = Object.values(newContactMethods).every(val => val); // If all checkboxes are true
+      const allChecked = Object.values(newContactMethods).every((val) => val); // If all checkboxes are true
       return {
         ...prev,
         termsConditions: {
@@ -137,7 +143,7 @@ const Default = (props: BookingServiceProps): JSX.Element => {
 
   // Handle Select All checkbox change
   const handleSelectAllChange = (value: boolean) => {
-    setFormData(prev => {
+    setFormData((prev) => {
       const newContactMethods = {
         whatsapp: value,
         sms: value,
@@ -157,8 +163,8 @@ const Default = (props: BookingServiceProps): JSX.Element => {
   // Manual validation function
   const validateForm = (): boolean => {
     const { personalInfo, vehicleInfo, bookingDetails, termsConditions } = formData;
-    const personalInfoValid = Object.values(personalInfo).every(val => val.trim() !== '');
-    const vehicleInfoValid = Object.values(vehicleInfo).every(val => val.trim() !== '');
+    const personalInfoValid = Object.values(personalInfo).every((val) => val.trim() !== '');
+    const vehicleInfoValid = Object.values(vehicleInfo).every((val) => val.trim() !== '');
     const bookingDetailsValid = bookingDetails.reminders;
     const termsConditionsValid = termsConditions.agreed && Object.values(termsConditions.contactMethods).includes(true);
 
@@ -177,7 +183,7 @@ const Default = (props: BookingServiceProps): JSX.Element => {
 
   // Toggle accordion visibility
   const toggleAccordion = (section: AccordionSection) => {
-    setAccordionState(prevState => ({
+    setAccordionState((prevState) => ({
       ...prevState,
       [section]: !prevState[section] // TypeScript now knows section is a valid key
     }));
@@ -243,7 +249,7 @@ const Default = (props: BookingServiceProps): JSX.Element => {
                   onChange={(e) => handleChange('personalInfo', 'country', e.target.value)}
                 >
                   <option value="">Select Country</option>
-                  {countries.map(country => (
+                  {countries.map((country) => (
                     <option key={country.id} value={country.fields.Country?.value}>
                       {country.fields.Country?.value}
                     </option>
