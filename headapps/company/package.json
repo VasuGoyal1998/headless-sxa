@@ -57,7 +57,6 @@
     "@graphql-codegen/typescript-operations": "^4.0.1",
     "@graphql-codegen/typescript-resolvers": "^4.0.1",
     "@graphql-typed-document-node/core": "^3.2.0",
-    "@sitecore-jss/sitecore-jss-cli": "~22.5.4",
     "@sitecore-jss/sitecore-jss-dev-tools": "~22.5.4",
     "@types/node": "^22.9.0",
     "@types/react": "^18.2.22",

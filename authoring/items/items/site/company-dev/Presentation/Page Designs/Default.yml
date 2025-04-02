@@ -6,7 +6,11 @@ Path: "/sitecore/content/company/company-dev/Presentation/Page Designs/Default"
 SharedFields:
 - ID: "0966b999-0d0e-4278-acc9-9da69d461fe6"
   Hint: PartialDesigns
-  Value: "{9BEB179F-6313-4FF8-AD58-6EE73A4FF6E8}|{1C60FC4F-ED97-4BCE-A5F7-48B89C228FEC}"
+  Value: "{1C60FC4F-ED97-4BCE-A5F7-48B89C228FEC}|{9BEB179F-6313-4FF8-AD58-6EE73A4FF6E8}"
+- ID: "c7c26117-dbb1-42b2-ab5e-f7223845cca3"
+  Hint: __Thumbnail
+  Value: |
+    <image mediaid="{313F1014-563D-49BB-A699-E5A5728BEBF3}" />
 Languages:
 - Language: en
   Versions:
@@ -25,11 +29,11 @@ Languages:
         sitecore\vasu_goyal@epam.com
     - ID: "8cdc337e-a112-42fb-bbb4-4143751e123f"
       Hint: __Revision
-      Value: "a4442cc8-bba0-42f1-bdb2-fd3c112053b4"
+      Value: "ad061dd7-1c5a-4cda-9a6c-34de7acf6710"
     - ID: "badd9cf9-53e0-4d0c-bcc0-2d784c282f6a"
       Hint: __Updated by
       Value: |
-        sitecore\vasu_goyal@epam.com
+        sitecore\viacheslav_sedletskyi@epam.com
     - ID: "d9cf14b1-fa16-4ba6-9288-e8a174d4d522"
       Hint: __Updated
-      Value: 20250331T073138Z
+      Value: 20250402T094448Z
