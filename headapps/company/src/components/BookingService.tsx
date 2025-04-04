@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { ComponentParams, ComponentRendering } from '@sitecore-jss/sitecore-jss-nextjs';
+import { ApolloClient, InMemoryCache, gql } from '@apollo/client';
 
 interface BookingServiceProps {
   rendering: ComponentRendering & { params: ComponentParams };
@@ -45,7 +46,7 @@ interface FormData {
       whatsapp: boolean;
       sms: boolean;
       call: boolean;
-      selectAll: boolean;  // New field for Select All checkbox
+      selectAll: boolean; // New field for Select All checkbox
     };
   };
 }
@@ -54,13 +55,61 @@ interface FormData {
 type AccordionSection = 'personalInfo' | 'vehicleInfo' | 'bookingDetails' | 'termsConditions';
 
 const Default = (props: BookingServiceProps): JSX.Element => {
-  const heading = (props.rendering.fields?.Heading as Field<string>)?.value || 'Booking Appointment';
-  
+  const heading =
+    (props.rendering.fields?.Heading as Field<string>)?.value || 'Booking Appointment';
+
+  const apolloClient = new ApolloClient({
+    uri: 'https://xmc-epamemeatra606b-headlesssxa5d02-dev887b.sitecorecloud.io/sitecore/api/graph/edge',
+    headers: {
+      sc_apikey: '4186D193-091A-4F21-9DC2-E8B19EFEF40F',
+    },
+    cache: new InMemoryCache(),
+  });
+
+  const query = gql`
+    query GetCountries {
+      item(path: "/sitecore/content/company/company-dev/Data/Location", language: "en") {
+        children {
+          results {
+            name
+            id
+            children {
+              results {
+                name
+                id
+                children {
+                  results {
+                    name
+                    id
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  `;
+
+  apolloClient
+    .query({
+      query: query,
+    })
+    .then(
+      (data) => {
+        console.log('The request was successfull, here is the data', data);
+      },
+      (error) => {
+        console.log('The request failed, here is the error', error);
+      }
+    );
+
   // Use memo to optimize the countries array
-  const countries = useMemo(() => 
-    Array.isArray(props.rendering.fields?.Country) 
-      ? (props.rendering.fields.Country as Item[]) 
-      : [], 
+  const countries = useMemo(
+    () =>
+      Array.isArray(props.rendering.fields?.Country)
+        ? (props.rendering.fields.Country as Item[])
+        : [],
     [props.rendering.fields?.Country]
   );
 
@@ -72,16 +121,16 @@ const Default = (props: BookingServiceProps): JSX.Element => {
       mobile: '',
       email: '',
       country: '',
-      city: ''
+      city: '',
     },
     vehicleInfo: {
       model: '',
       carType: '',
       plateNumber: '',
-      meterReading: ''
+      meterReading: '',
     },
     bookingDetails: {
-      reminders: false
+      reminders: false,
     },
     termsConditions: {
       agreed: false,
@@ -89,9 +138,9 @@ const Default = (props: BookingServiceProps): JSX.Element => {
         whatsapp: false,
         sms: false,
         call: false,
-        selectAll: false  // Initial state for Select All checkbox
-      }
-    }
+        selectAll: false, // Initial state for Select All checkbox
+      },
+    },
   });
 
   // State for accordion visibility
@@ -99,14 +148,16 @@ const Default = (props: BookingServiceProps): JSX.Element => {
     personalInfo: false,
     vehicleInfo: false,
     bookingDetails: false,
-    termsConditions: false
+    termsConditions: false,
   });
 
   // Cascading cities based on selected country
   const [filteredCities, setFilteredCities] = useState<string[]>([]);
   useEffect(() => {
     const selectedCountry = formData.personalInfo.country;
-    const countryItem = countries.find((country) => country.fields?.Country?.value === selectedCountry);
+    const countryItem = countries.find(
+      (country) => country.fields?.Country?.value === selectedCountry
+    );
     if (countryItem && countryItem.fields?.City) {
       setFilteredCities(countryItem.fields.City.map((cityObj) => cityObj.fields.City.value));
     } else {
@@ -120,8 +171,8 @@ const Default = (props: BookingServiceProps): JSX.Element => {
       ...prev,
       [section]: {
         ...prev[section],
-        [field]: value
-      }
+        [field]: value,
+      },
     }));
   };
 
@@ -135,8 +186,8 @@ const Default = (props: BookingServiceProps): JSX.Element => {
         termsConditions: {
           ...prev.termsConditions,
           contactMethods: newContactMethods,
-          selectAll: allChecked // Update "Select All" checkbox based on individual selections
-        }
+          selectAll: allChecked, // Update "Select All" checkbox based on individual selections
+        },
       };
     });
   };
@@ -148,14 +199,14 @@ const Default = (props: BookingServiceProps): JSX.Element => {
         whatsapp: value,
         sms: value,
         call: value,
-        selectAll: value
+        selectAll: value,
       };
       return {
         ...prev,
         termsConditions: {
           ...prev.termsConditions,
-          contactMethods: newContactMethods
-        }
+          contactMethods: newContactMethods,
+        },
       };
     });
   };
@@ -166,7 +217,8 @@ const Default = (props: BookingServiceProps): JSX.Element => {
     const personalInfoValid = Object.values(personalInfo).every((val) => val.trim() !== '');
     const vehicleInfoValid = Object.values(vehicleInfo).every((val) => val.trim() !== '');
     const bookingDetailsValid = bookingDetails.reminders;
-    const termsConditionsValid = termsConditions.agreed && Object.values(termsConditions.contactMethods).includes(true);
+    const termsConditionsValid =
+      termsConditions.agreed && Object.values(termsConditions.contactMethods).includes(true);
 
     return personalInfoValid && vehicleInfoValid && bookingDetailsValid && termsConditionsValid;
   };
@@ -185,7 +237,7 @@ const Default = (props: BookingServiceProps): JSX.Element => {
   const toggleAccordion = (section: AccordionSection) => {
     setAccordionState((prevState) => ({
       ...prevState,
-      [section]: !prevState[section] // TypeScript now knows section is a valid key
+      [section]: !prevState[section], // TypeScript now knows section is a valid key
     }));
   };
 
