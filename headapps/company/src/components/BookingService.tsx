@@ -13,7 +13,7 @@ interface Field<T> {
 }
 
 interface Item {
-  children: any;
+  children: any; // You can replace `any` with a more specific type if you know the structure
   id: string;
   url: string;
   name: string;
@@ -61,13 +61,15 @@ const Default = (props: BookingServiceProps): JSX.Element => {
     (props.rendering.fields?.Heading as Field<string>)?.value || 'Booking Appointment';
 
   // Apollo Client setup
-  const apolloClient = new ApolloClient({
-    uri: process.env.NEXT_PUBLIC_GRAPH_QL_ENDPOINT,
-    headers: {
-      sc_apikey: process.env.NEXT_PUBLIC_SITECORE_API_KEY as string,
-    },
-    cache: new InMemoryCache(),
-  });
+  const apolloClient = useMemo(() => {
+    return new ApolloClient({
+      uri: process.env.NEXT_PUBLIC_GRAPH_QL_ENDPOINT,
+      headers: {
+        sc_apikey: process.env.NEXT_PUBLIC_SITECORE_API_KEY as string,
+      },
+      cache: new InMemoryCache(),
+    });
+  }, []);
 
   const query = gql`
     query GetCountries {
@@ -114,7 +116,7 @@ const Default = (props: BookingServiceProps): JSX.Element => {
       .catch((error) => {
         console.error('Error fetching countries and cities', error);
       });
-  }, []);
+  }, [apolloClient, query]); // Add apolloClient and query to the dependencies array
 
   // Memoize the countries data
   const countries = useMemo(() => Object.keys(countryData), [countryData]);
