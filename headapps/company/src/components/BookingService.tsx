@@ -113,7 +113,6 @@ const Default = (props: BookingServiceProps): JSX.Element => {
       })
       .catch((error) => {
         console.error('Error fetching countries and cities', error);
-        console.log(process.env.local);
       });
   }, []);
 
@@ -160,7 +159,7 @@ const Default = (props: BookingServiceProps): JSX.Element => {
   };
 
   // Handle individual checkbox change
-  const handleCheckboxChange = (checkboxName: string, value: boolean): void => {
+  const handleCheckboxChange = (checkboxName: keyof FormData['termsConditions']['contactMethods'], value: boolean): void => {
     setFormData((prev) => {
       const newContactMethods = { ...prev.termsConditions.contactMethods, [checkboxName]: value };
       const allChecked = Object.values(newContactMethods).every((val) => val); // If all checkboxes are true
@@ -237,7 +236,6 @@ const Default = (props: BookingServiceProps): JSX.Element => {
           {accordionState.personalInfo && (
             <div className="accordion-content">
               {/* Personal Info Fields */}
-              {/* Family Name */}
               <div className="form-section">
                 <label htmlFor="familyName">Family Name</label>
                 <input
@@ -248,7 +246,6 @@ const Default = (props: BookingServiceProps): JSX.Element => {
                   onChange={(e) => handleChange('personalInfo', 'familyName', e.target.value)}
                 />
               </div>
-              {/* First Name */}
               <div className="form-section">
                 <label htmlFor="firstName">First Name</label>
                 <input
@@ -259,7 +256,6 @@ const Default = (props: BookingServiceProps): JSX.Element => {
                   onChange={(e) => handleChange('personalInfo', 'firstName', e.target.value)}
                 />
               </div>
-              {/* Mobile */}
               <div className="form-section">
                 <label htmlFor="mobile">Mobile</label>
                 <input
@@ -270,7 +266,6 @@ const Default = (props: BookingServiceProps): JSX.Element => {
                   onChange={(e) => handleChange('personalInfo', 'mobile', e.target.value)}
                 />
               </div>
-              {/* Email */}
               <div className="form-section">
                 <label htmlFor="email">Email</label>
                 <input
@@ -281,7 +276,6 @@ const Default = (props: BookingServiceProps): JSX.Element => {
                   onChange={(e) => handleChange('personalInfo', 'email', e.target.value)}
                 />
               </div>
-              {/* Country */}
               <div className="form-section">
                 <label htmlFor="country">Country</label>
                 <select
@@ -301,7 +295,6 @@ const Default = (props: BookingServiceProps): JSX.Element => {
                   ))}
                 </select>
               </div>
-              {/* City */}
               <div className="form-section">
                 <label htmlFor="city">City</label>
                 <select
@@ -328,7 +321,6 @@ const Default = (props: BookingServiceProps): JSX.Element => {
           </button>
           {accordionState.vehicleInfo && (
             <div className="accordion-content">
-              {/* Vehicle Model */}
               <div className="form-section">
                 <label htmlFor="model">Vehicle Model</label>
                 <input
@@ -339,7 +331,6 @@ const Default = (props: BookingServiceProps): JSX.Element => {
                   onChange={(e) => handleChange('vehicleInfo', 'model', e.target.value)}
                 />
               </div>
-              {/* Car Type */}
               <div className="form-section">
                 <label htmlFor="carType">Car Type</label>
                 <input
@@ -350,7 +341,6 @@ const Default = (props: BookingServiceProps): JSX.Element => {
                   onChange={(e) => handleChange('vehicleInfo', 'carType', e.target.value)}
                 />
               </div>
-              {/* Plate Number */}
               <div className="form-section">
                 <label htmlFor="plateNumber">Plate Number</label>
                 <input
@@ -361,7 +351,6 @@ const Default = (props: BookingServiceProps): JSX.Element => {
                   onChange={(e) => handleChange('vehicleInfo', 'plateNumber', e.target.value)}
                 />
               </div>
-              {/* Meter Reading */}
               <div className="form-section">
                 <label htmlFor="meterReading">Meter Reading</label>
                 <input
@@ -383,7 +372,6 @@ const Default = (props: BookingServiceProps): JSX.Element => {
           </button>
           {accordionState.bookingDetails && (
             <div className="accordion-content">
-              {/* Reminders */}
               <div className="form-section">
                 <label htmlFor="reminders">Reminders</label>
                 <input
@@ -404,7 +392,6 @@ const Default = (props: BookingServiceProps): JSX.Element => {
           </button>
           {accordionState.termsConditions && (
             <div className="accordion-content">
-              {/* Terms Agreement */}
               <div className="form-section">
                 <label htmlFor="agreed">I Agree to the Terms & Conditions</label>
                 <input
@@ -414,7 +401,6 @@ const Default = (props: BookingServiceProps): JSX.Element => {
                   onChange={(e) => handleChange('termsConditions', 'agreed', e.target.checked)}
                 />
               </div>
-              {/* Contact Methods */}
               <div className="form-section">
                 <label>Contact Methods</label>
                 <div className="checkbox-group">
@@ -444,7 +430,6 @@ const Default = (props: BookingServiceProps): JSX.Element => {
                     onChange={(e) => handleCheckboxChange('call', e.target.checked)}
                   />
                 </div>
-                {/* Select All */}
                 <div className="checkbox-group">
                   <label htmlFor="selectAll">Select All</label>
                   <input
