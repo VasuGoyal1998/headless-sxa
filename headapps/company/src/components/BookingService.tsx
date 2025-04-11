@@ -13,7 +13,7 @@ interface Field<T> {
 }
 
 interface Item {
-  children: any; // You can replace `any` with a more specific type if you know the structure
+  children: any; // This needs to be typed better if possible
   id: string;
   url: string;
   name: string;
@@ -61,15 +61,13 @@ const Default = (props: BookingServiceProps): JSX.Element => {
     (props.rendering.fields?.Heading as Field<string>)?.value || 'Booking Appointment';
 
   // Apollo Client setup
-  const apolloClient = useMemo(() => {
-    return new ApolloClient({
-      uri: process.env.NEXT_PUBLIC_GRAPH_QL_ENDPOINT,
-      headers: {
-        sc_apikey: process.env.NEXT_PUBLIC_SITECORE_API_KEY as string,
-      },
-      cache: new InMemoryCache(),
-    });
-  }, []);
+  const apolloClient = new ApolloClient({
+    uri: process.env.NEXT_PUBLIC_GRAPH_QL_ENDPOINT,
+    headers: {
+      sc_apikey: process.env.NEXT_PUBLIC_SITECORE_API_KEY as string,
+    },
+    cache: new InMemoryCache(),
+  });
 
   const query = gql`
     query GetCountries {
@@ -116,7 +114,7 @@ const Default = (props: BookingServiceProps): JSX.Element => {
       .catch((error) => {
         console.error('Error fetching countries and cities', error);
       });
-  }, [apolloClient, query]); // Add apolloClient and query to the dependencies array
+  }, [apolloClient, query]);
 
   // Memoize the countries data
   const countries = useMemo(() => Object.keys(countryData), [countryData]);
@@ -305,7 +303,7 @@ const Default = (props: BookingServiceProps): JSX.Element => {
                   onChange={(e) => handleChange('personalInfo', 'city', e.target.value)}
                 >
                   <option value="">Select City</option>
-                  {filteredCities.map((city) => (
+                  {filteredCities.map((city: string) => (
                     <option key={city} value={city}>
                       {city}
                     </option>
@@ -375,7 +373,7 @@ const Default = (props: BookingServiceProps): JSX.Element => {
           {accordionState.bookingDetails && (
             <div className="accordion-content">
               <div className="form-section">
-                <label htmlFor="reminders">Reminders</label>
+                <label htmlFor="reminders">Set Reminders</label>
                 <input
                   type="checkbox"
                   id="reminders"
@@ -387,7 +385,7 @@ const Default = (props: BookingServiceProps): JSX.Element => {
           )}
         </div>
 
-        {/* Terms & Conditions Accordion */}
+        {/* Terms and Conditions Accordion */}
         <div className="accordion">
           <button type="button" onClick={() => toggleAccordion('termsConditions')}>
             Terms and Conditions
@@ -395,51 +393,50 @@ const Default = (props: BookingServiceProps): JSX.Element => {
           {accordionState.termsConditions && (
             <div className="accordion-content">
               <div className="form-section">
-                <label htmlFor="agreed">I Agree to the Terms & Conditions</label>
-                <input
-                  type="checkbox"
-                  id="agreed"
-                  checked={formData.termsConditions.agreed}
-                  onChange={(e) => handleChange('termsConditions', 'agreed', e.target.checked)}
-                />
+                <label>
+                  <input
+                    type="checkbox"
+                    checked={formData.termsConditions.agreed}
+                    onChange={(e) => handleChange('termsConditions', 'agreed', e.target.checked)}
+                  />
+                  I agree to the terms and conditions
+                </label>
               </div>
               <div className="form-section">
-                <label>Contact Methods</label>
-                <div className="checkbox-group">
-                  <label htmlFor="whatsapp">WhatsApp</label>
-                  <input
-                    type="checkbox"
-                    id="whatsapp"
-                    checked={formData.termsConditions.contactMethods.whatsapp}
-                    onChange={(e) => handleCheckboxChange('whatsapp', e.target.checked)}
-                  />
-                </div>
-                <div className="checkbox-group">
-                  <label htmlFor="sms">SMS</label>
-                  <input
-                    type="checkbox"
-                    id="sms"
-                    checked={formData.termsConditions.contactMethods.sms}
-                    onChange={(e) => handleCheckboxChange('sms', e.target.checked)}
-                  />
-                </div>
-                <div className="checkbox-group">
-                  <label htmlFor="call">Phone Call</label>
-                  <input
-                    type="checkbox"
-                    id="call"
-                    checked={formData.termsConditions.contactMethods.call}
-                    onChange={(e) => handleCheckboxChange('call', e.target.checked)}
-                  />
-                </div>
-                <div className="checkbox-group">
-                  <label htmlFor="selectAll">Select All</label>
-                  <input
-                    type="checkbox"
-                    id="selectAll"
-                    checked={formData.termsConditions.contactMethods.selectAll}
-                    onChange={(e) => handleSelectAllChange(e.target.checked)}
-                  />
+                <label>Select Contact Methods:</label>
+                <div>
+                  <label>
+                    <input
+                      type="checkbox"
+                      checked={formData.termsConditions.contactMethods.whatsapp}
+                      onChange={(e) => handleCheckboxChange('whatsapp', e.target.checked)}
+                    />
+                    WhatsApp
+                  </label>
+                  <label>
+                    <input
+                      type="checkbox"
+                      checked={formData.termsConditions.contactMethods.sms}
+                      onChange={(e) => handleCheckboxChange('sms', e.target.checked)}
+                    />
+                    SMS
+                  </label>
+                  <label>
+                    <input
+                      type="checkbox"
+                      checked={formData.termsConditions.contactMethods.call}
+                      onChange={(e) => handleCheckboxChange('call', e.target.checked)}
+                    />
+                    Call
+                  </label>
+                  <label>
+                    <input
+                      type="checkbox"
+                      checked={formData.termsConditions.contactMethods.selectAll}
+                      onChange={(e) => handleSelectAllChange(e.target.checked)}
+                    />
+                    Select All
+                  </label>
                 </div>
               </div>
             </div>
